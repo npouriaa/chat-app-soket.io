@@ -6,6 +6,10 @@ const socket = io.connect("http://localhost:5174");
 const App = () => {
   return (
     <div className="container">
+      <div className="messages-con">
+        <div className="message-con message-mine"></div>
+        <div className="message-con message-yours"></div>
+      </div>
       <form className="message-input-con" action="">
         <input
           onChange={(e) => setText(e.target.value)}

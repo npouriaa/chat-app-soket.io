@@ -42,3 +42,25 @@
   height: 25px;
   color: #6c6c6c;
 }
+
+.messages-con{
+  width: 100%;
+  height: calc(100% - 7%);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-con{
+  max-width: max-content;
+  height: 100px;
+  background-color: #6495ed;
+}
+
+.message-mine{
+  border-radius: 20px 20px 20px 0;
+}
+
+.message-yours{
+
+}
