@@ -1,8 +1,6 @@
 .container {
-  width: 700px;
   height: 100%;
   background-color: #fff;
-  border-radius: 25px;
   position: relative;
   overflow: hidden;
   background-image: url(./images/pattern-29.svg);
@@ -10,7 +8,7 @@
 
 .message-input-con {
   background-color: #fff;
-  padding: 10px;
+  padding: 5px;
   position: absolute;
   width: 100%;
   height: calc(100% - 93%);
@@ -26,6 +24,7 @@
   height: 100%;
   border: none;
   padding: 10px;
+  font-size: 13px;
 }
 
 .message-input-con button {
@@ -43,7 +42,7 @@
   color: #6c6c6c;
 }
 
-.messages-con{
+.messages-con {
   width: 100%;
   height: calc(100% - 7%);
   padding: 10px;
@@ -51,16 +50,33 @@
   flex-direction: column;
 }
 
-.message-con{
+.message-con {
   max-width: max-content;
   height: 100px;
   background-color: #6495ed;
 }
 
-.message-mine{
+.message-mine {
   border-radius: 20px 20px 20px 0;
 }
 
-.message-yours{
+@media (min-width: 320px) {
+  .container {
+    width: 100vw;
+    border-radius: 0;
+  }
+}
 
+@media (min-width: 1025px) {
+  .container {
+    width: 700px;
+    border-radius: 25px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    width: 1000px;
+    border-radius: 25px;
+  }
 }

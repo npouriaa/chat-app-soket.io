@@ -9,10 +9,21 @@
 }
 
 body {
-  padding: 25px;
   width: 100vw;
   height: 100vh;
   display: flex;
   background-color: #ddff;
   justify-content: center;
+}
+
+@media (min-width: 320px) {
+  body {
+    padding: 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  body {
+    padding: 25px;
+  }
 }
