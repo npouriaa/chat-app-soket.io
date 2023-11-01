@@ -7,8 +7,18 @@ const App = () => {
   return (
     <div className="container">
       <div className="messages-con">
-        <div className="message-con message-mine"></div>
-        <div className="message-con message-yours"></div>
+        <div className="message" >
+          <div className="message-content message-mine">
+            <p>
+              dsdssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsdsdsdsd
+            </p>
+          </div>
+        </div>
+        <div className="message" style={{justifyContent : "end"}}>
+          <div className="message-content message-yours">
+            <p>dskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdfdffddffffffffffffffffffffk</p>
+          </div>
+        </div>
       </div>
       <form className="message-input-con" action="">
         <input
