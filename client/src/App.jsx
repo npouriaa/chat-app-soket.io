@@ -1,32 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:5174");
 
 const App = () => {
+  const [message, setMessage] = useState("");
+  const [receiveMessage, setReceiveMessage] = useState("");
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    socket.emit("send_message", {
+      message: message,
+    });
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setReceiveMessage(data.message);
+    });
+  }, [socket]);
+
   return (
     <div className="container">
       <div className="messages-con">
-        <div className="message" >
+        <div className="message">
           <div className="message-content message-mine">
-            <p>
-              dsdssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsddssdsdsdsdsdsd
-            </p>
+            <p>{message}</p>
           </div>
         </div>
-        <div className="message" style={{justifyContent : "end"}}>
+        <div className="message" style={{ justifyContent: "end" }}>
           <div className="message-content message-yours">
-            <p>dskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdskllksdkdsdsdsdsdlslsdfddffddffffffffffffffffdfdfdffddffffffffffffffffffffkdfdffddffffffffffffffffffffk</p>
+            <p>{receiveMessage}</p>
           </div>
         </div>
       </div>
       <form className="message-input-con" action="">
         <input
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => setMessage(e.target.value)}
           type="text"
           placeholder="Message"
         />
-        <button type="submit">
+        <button onClick={(e) => sendMessage(e)} type="submit">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
