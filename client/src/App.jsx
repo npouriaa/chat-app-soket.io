@@ -5,19 +5,31 @@ const socket = io.connect("http://localhost:5174");
 
 const App = () => {
   const [message, setMessage] = useState("");
-  const [receiveMessage, setReceiveMessage] = useState("");
   const [userId, setUserId] = useState("");
+  const [messageList, setMessageList] = useState([]);
 
-  const sendMessage = (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
-    socket.emit("send_message", {
-      message: message,
-    });
+    let time = new Date();
+    let currentHour = time.getHours();
+    let currentMinute = time.getMinutes();
+    if (message !== "") {
+      let msgObj = {
+        senderId: userId,
+        message: message,
+        time: `${currentHour}:${currentMinute}`,
+      };
+      await socket.emit("send_message", msgObj);
+      setMessageList((list) => [...list, msgObj]);
+      setMessage("");
+      console.log(messageList);
+    }
   };
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setReceiveMessage(data.message);
+      console.log(data);
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
 
@@ -34,21 +46,35 @@ const App = () => {
         <p>Live chat</p>
       </div>
       <div className="messages-con">
-        <div className="message">
-          <div className="message-content message-mine">
-            <p>fddfddfdffffddffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdfffdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffdfff</p>
-            <span>12:10</span>
+        {messageList.map((data, index) => (
+          <div
+            key={index}
+            className="message"
+            style={{
+              justifyContent: `${data.senderId === userId ? "end" : ""}`,
+            }}
+          >
+            <div
+              className={`message-content message-${
+                data.senderId === userId ? "yours" : "mine"
+              }`}
+            >
+              <p>{data.message}</p>
+              <span>{data.time}</span>
+            </div>
           </div>
-        </div>
-        <div className="message" style={{ justifyContent: "end" }}>
+        ))}
+
+        {/* <div className="message"}>
           <div className="message-content message-yours">
-            <p>fddfddfdffffddffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdfffdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffdfff</p>
-            <span>12:10</span>
+            <p></p>
+            <span></span>
           </div>
-        </div>
+        </div> */}
       </div>
       <form className="message-input-con" action="">
         <input
+          value={message}
           onChange={(e) => setMessage(e.target.value)}
           type="text"
           placeholder="Message"
