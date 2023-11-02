@@ -29,6 +29,10 @@ const App = () => {
 
   return (
     <div className="container">
+      <div className="top-bar">
+        <span></span>
+        <p>Live chat</p>
+      </div>
       <div className="messages-con">
         <div className="message">
           <div className="message-content message-mine">
