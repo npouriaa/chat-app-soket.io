@@ -6,6 +6,7 @@ const socket = io.connect("http://localhost:5174");
 const App = () => {
   const [message, setMessage] = useState("");
   const [receiveMessage, setReceiveMessage] = useState("");
+  const [userId, setUserId] = useState("");
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -20,17 +21,23 @@ const App = () => {
     });
   }, [socket]);
 
+  useEffect(() => {
+    socket.on("connect", () => {
+      setUserId(socket.id);
+    });
+  }, []);
+
   return (
     <div className="container">
       <div className="messages-con">
         <div className="message">
           <div className="message-content message-mine">
-            <p>{message}</p>
+            <p></p>
           </div>
         </div>
         <div className="message" style={{ justifyContent: "end" }}>
           <div className="message-content message-yours">
-            <p>{receiveMessage}</p>
+            <p></p>
           </div>
         </div>
       </div>
