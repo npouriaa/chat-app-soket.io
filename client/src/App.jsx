@@ -36,12 +36,14 @@ const App = () => {
       <div className="messages-con">
         <div className="message">
           <div className="message-content message-mine">
-            <p></p>
+            <p>fddfddfdffffddffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdfffdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffdfff</p>
+            <span>12:10</span>
           </div>
         </div>
         <div className="message" style={{ justifyContent: "end" }}>
           <div className="message-content message-yours">
-            <p></p>
+            <p>fddfddfdffffddffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdfffdffffddfdffffddfdffffddfdffffddfdffffddfdffffddfdffffdfff</p>
+            <span>12:10</span>
           </div>
         </div>
       </div>
