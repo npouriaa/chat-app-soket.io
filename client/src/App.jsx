@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:5174");
 
@@ -45,7 +46,7 @@ const App = () => {
         <span></span>
         <p>Live chat</p>
       </div>
-      <div className="messages-con">
+      <ScrollToBottom className="messages-con">
         {messageList.map((data, index) => (
           <div
             key={index}
@@ -56,7 +57,7 @@ const App = () => {
           >
             <div
               className={`message-content message-${
-                data.senderId === userId ? "yours" : "mine"
+                data.senderId === userId ? "you" : "other"
               }`}
             >
               <p>{data.message}</p>
@@ -64,14 +65,7 @@ const App = () => {
             </div>
           </div>
         ))}
-
-        {/* <div className="message"}>
-          <div className="message-content message-yours">
-            <p></p>
-            <span></span>
-          </div>
-        </div> */}
-      </div>
+      </ScrollToBottom>
       <form className="message-input-con" action="">
         <input
           value={message}
